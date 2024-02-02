@@ -1,0 +1,30 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: grafana
+  namespace: flux-system
+spec:
+  interval: 4h
+  url: https://grafana.github.io/helm-charts
+
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana-agent-operator
+  namespace: flux-system
+spec:
+  targetNamespace: ${namespace_name:=default}
+  serviceAccountName: kustomize-controller
+  chart:
+    spec:
+      chart: grafana-agent-operator
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      version: '0.2.16'
+  interval: 15m
+  values:
+    

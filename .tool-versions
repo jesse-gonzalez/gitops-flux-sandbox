@@ -1,0 +1,6 @@
+helm        latest
+helm-docs   latest
+kubeconform latest
+helm-ct     latest
+opentofu    1.6.0-alpha3
+kind        latest

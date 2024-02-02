@@ -1,0 +1,37 @@
+# Reference: https://github.com/DataDog/datadog-operator/blob/main/docs/configuration.v2alpha1.md
+
+apiVersion: datadoghq.com/v2alpha1
+kind: DatadogAgent
+metadata:
+  name: datadog
+  namespace: datadog
+spec:
+  global:
+    site: datadoghq.eu
+    credentials:
+      apiSecret:
+        secretName: datadog-secret
+        keyName: api-key
+      appSecret:
+        secretName: datadog-secret
+        keyName: app-key
+    kubelet:
+      tlsVerify: false
+
+  features:
+    apm:
+      enabled: false
+    clusterChecks:
+      enabled: true
+    kubeStateMetricsCore:
+      enabled: true
+    logCollection:
+      containerCollectAll: false
+      enabled: false
+    liveContainerCollection:
+      enabled: false
+    liveProcessCollection:
+      enabled: false
+    # Disable prometheus scrapping as we just want DataDog-based annotation scrapping
+    prometheusScrape:
+      enabled: false
