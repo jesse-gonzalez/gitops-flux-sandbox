@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/Sturgelose/flux-platform.git
+  url: ssh://git@github.com/jesse-gonzalez/gitops-flux-sandbox.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
